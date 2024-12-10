@@ -1,28 +1,74 @@
+# 2304
+"""
+1. 완전탐색
+돌려놓고 봤을 때  큰값부터 내려온다 했을때 있는지 확인
+
+
+2. 누적합
+가장 큰 높이로 가면서 누적합
+
+3. 투포인터
+최고점 기준 우측, 좌측에서 stacking
+"""
 n = int(input())
-arr = []
-for _ in range(n):
-    x, y = map(int, input().split())
-    arr.append([x, y])
+
+graph = [0]*10001
+x_list = []
+y_list = []
+
+for i in range(n):
+    x, y = map(int,input().split())
+    graph[x] = y
+    x_list.append(x)
+    y_list.append(y)
+
+maxHeight = max(y_list)
+maxWidth = max(x_list)
+prefix = [0]*(maxWidth+2)
+suffix = [0]*(maxWidth+2)
+
+maxPoint = []
+
+#prefix계산
+h = 0
+for f in range(1,maxWidth+3):
+    if(graph[f] == maxHeight):
+        maxPoint.append(f)
+        break
+    h = max(h, graph[f])
+    prefix[f] = prefix[f-1] + h
+
+h = 0
+for b in range(maxWidth,0,-1):
+    if(graph[b] == maxHeight):
+        maxPoint.append(b)
+        break
+    h = max(h, graph[b])
+    suffix[b] = suffix[b+1] + h
+
+
+#정답 합치기
+
+answer = max(prefix) + max(suffix)
+answer += (maxPoint[1] - maxPoint[0] + 1 )*maxHeight
+
+print(answer)
+
 
 # prefix
 # prefix = [[i[0] + 1, i[1]] for i in arr]
-highest_y = 0
-highest_x = 0
-width = arr[0][0] + 1
-area = arr[0][1]
-for i in range(n):
-    x, y = arr[i][0], arr[i][1]
-
-    if y > highest_y:
-        highest_y = y
-        highest_x = x
-
-print((width-highest_x) * highest_y)
-
-
-
-
-
+# highest_y = 0
+# highest_x = 0
+# width = arr[0][0] + 1
+# area = arr[0][1]
+# for i in range(n):
+#     x, y = arr[i][0], arr[i][1]
+#
+#     if y > highest_y:
+#         highest_y = y
+#         highest_x = x
+#
+# print((width-highest_x) * highest_y)
 
 
 # 메모리얼 풀이
