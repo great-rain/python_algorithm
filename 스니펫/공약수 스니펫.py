@@ -27,3 +27,19 @@ def get_divisors(n):
                 divisors.append(n // i)
     return sorted(divisors)
 
+
+def gcd_list(numbers):
+    """
+    리스트에서 최대공약수 구하기
+    """
+    def gcd(a, b):
+        while b:
+            a, b = b, a % b
+        return a
+
+    result = numbers[0]
+    for number in numbers[1:]:
+        result = gcd(result, number)
+        if result == 1:  # 최대공약수가 1이면 더 이상 계산할 필요가 없습니다.
+            return 1
+    return result
