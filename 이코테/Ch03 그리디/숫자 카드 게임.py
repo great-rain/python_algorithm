@@ -1,4 +1,11 @@
-import sys
 N, M = map(int, input().split())
-matrix = [list(map(int, row.split())) for row in sys.stdin.read().strip().split('\n')]
-print(matrix[N-1][M-1])
+res = 0
+
+for i in range(N):
+    arr = list(map(int, input().split()))
+    m = 10001
+    for a in arr:
+        m = min(m, a)
+    res = max(res, m)
+
+print(res)
