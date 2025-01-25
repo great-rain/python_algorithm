@@ -7,7 +7,7 @@ while N != 1:
         N -= 1
 
     count += 1
-
+count += (N-1)
 print(count)
 """
 비효율적인 연산
