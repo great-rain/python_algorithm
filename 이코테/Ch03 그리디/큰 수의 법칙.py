@@ -8,7 +8,8 @@ n, m, k = map(int, input().split())
 numbers = sorted(map(int, input().split()))
 
 max1, max2 = numbers[-1], numbers[-2]
-count = (m // (k + 1)) * k + (m % (k + 1)) # 반복 횟수
 
+# max1에 대하여 반복 횟수 (m // (k + 1)) * k, 추가로 사용 할 수 있는 회수m % (k + 1)
+count = (m // (k + 1)) * k + (m % (k + 1))
 result = count * max1 + (m - count) * max2
 print(result)
