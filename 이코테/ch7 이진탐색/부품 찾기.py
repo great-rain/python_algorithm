@@ -1,3 +1,6 @@
+# 백준 1920 번 문제
+# https://www.acmicpc.net/problem/1920
+
 N = int(input())
 N_array = sorted(map(int, input().split()))
 M = int(input())
@@ -20,10 +23,16 @@ def binary_serach(array, target, start, end):
 for i in M_array:
     result = binary_serach(N_array, i, 0, N - 1)
 
-    if result:
+    if result != None:
         print('yes', end=' ')
     else:
         print('no', end=' ')
+
+    # 이러면 0일 때 처리 못함
+    # if result:
+    #     print('yes', end=' ')
+    # else:
+    #     print('no', end=' ')
 
 
 """
