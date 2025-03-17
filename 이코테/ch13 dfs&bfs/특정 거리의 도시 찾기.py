@@ -32,4 +32,11 @@ while q:
             distance[next_node] = distance[now] + 1
             q.append(next_node)
 
-print(distance)
+check = False
+for i in distance:
+    if i == K:
+        check=True
+        print(i)
+
+if not check:
+    print(-1)
